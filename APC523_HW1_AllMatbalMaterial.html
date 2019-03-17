@@ -1,0 +1,990 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>APC523_HW1</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-16"><meta name="DC.source" content="APC523_HW1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Problem 2</a></li><li><a href="#2">Problem 4</a></li><li><a href="#3">Problem 5</a></li><li><a href="#4">Problem 6</a></li><li><a href="#5">Problem 7</a></li><li><a href="#6">Problem 8</a></li></ul></div><h2 id="1">Problem 2</h2><pre class="codeinput">clear
+clc
+
+x = 5.5; k = 30; m = 5;
+
+<span class="comment">% Part (a)</span>
+Nums_a = zeros(31,1); Nums_a(1) = 1;
+Denoms_a = zeros(31,1); Denoms_a(1) = 1;
+<span class="keyword">for</span> n = 1:k
+    Nums_a(n+1) = round(Nums_a(n)*x,m,<span class="string">'significant'</span>);
+    Denoms_a(n+1) = round(Denoms_a(n)*n,m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+
+<span class="comment">% part (b)</span>
+Approx_b = 0;
+<span class="keyword">for</span> n = 1:k+1
+    Approx_b = round(Approx_b + round(Nums_a(n)/Denoms_a(n),m,<span class="string">'significant'</span>),m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_b <span class="comment">% answer is 244.71</span>
+<span class="comment">% answer has converged at k=17 (18 total terms)</span>
+Exact = exp(x); <span class="comment">% answer is 244.6919322...</span>
+RE = (exp(x)-Approx_b)/exp(x) <span class="comment">% relative error = -7.384e-5</span>
+
+<span class="comment">% part (c)</span>
+Approx_c = 0;
+<span class="keyword">for</span> n = 1:k+1
+    Approx_c = round(round(Nums_a(n)/Denoms_a(n),m,<span class="string">'significant'</span>)+Approx_c,m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_c <span class="comment">% No this didn't change any answers</span>
+
+<span class="comment">% part (d)</span>
+x_d = -5.5;
+<span class="keyword">for</span> n = 1:k+1
+    Nums_d(n) = (-1)^(n-1)*Nums_a(n);
+    Denoms_d(n) = Denoms_a(n);
+<span class="keyword">end</span>
+Terms = round(Nums_d./Denoms_d,m,<span class="string">'significant'</span>);
+
+<span class="comment">% (i) Always add left to right</span>
+Approx_di = 0;
+<span class="keyword">for</span> n = 1:k+1
+    Approx_di = round(Approx_di + Terms(n),m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_di <span class="comment">% answer is 0.0038363</span>
+<span class="comment">% answer has converged at k=25 (26 total terms)</span>
+Exact_d = exp(x_d); <span class="comment">% answer is 0.0040867714...</span>
+RE_di = (exp(x_d)-Approx_di)/exp(x_d) <span class="comment">% relative error = 0.061288...</span>
+
+
+<span class="comment">% (ii) Within each partial sum, add right to left</span>
+Approx_dii = 0;
+<span class="keyword">for</span> n = 1:k+1
+    Approx_dii = round(Terms(n)+Approx_dii,m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_dii <span class="comment">% answer is 0.0038363</span>
+<span class="comment">% answer has converged at k=25 (26 total terms)</span>
+RE_dii = (exp(x_d)-Approx_dii)/exp(x_d) <span class="comment">% relative error = 0.061288...</span>
+
+
+<span class="comment">% (iii) add all the positive terms contributing to partial sum left to right, then add all...</span>
+<span class="comment">%       the negative terms left to right, and then combine those results.</span>
+Terms_pos = Terms; Terms_pos(Terms_pos &lt; 0) = 0;
+Terms_neg = Terms; Terms_neg(Terms_neg &gt; 0) = 0;
+
+Approx_diii = 0;
+<span class="keyword">for</span> n = 1:k+1
+    pos = 0; neg = 0;
+    <span class="keyword">for</span> n2 = 1:n
+        pos = round(pos + Terms_pos(n2),m,<span class="string">'significant'</span>);
+        neg = round(neg + Terms_neg(n2),m,<span class="string">'significant'</span>);
+    <span class="keyword">end</span>
+    Approx_diii = round(pos+neg,m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_diii <span class="comment">% answer is 0.0000</span>
+<span class="comment">% answer has converged at k=17 (18 total terms)</span>
+RE_diii = (exp(x_d)-Approx_diii)/exp(x_d) <span class="comment">% relative error = 1</span>
+
+
+<span class="comment">% (iv) add all the positive terms contributing to partial sum right to left, then add all...</span>
+<span class="comment">%       the negative terms right to left, and then combine those results.</span>
+Approx_div = 0;
+<span class="keyword">for</span> n = 1:k+1
+    pos = 0; neg = 0;
+    <span class="keyword">for</span> n2 = 1:n
+        pos = round(Terms_pos(n2)+pos,m,<span class="string">'significant'</span>);
+        neg = round(Terms_neg(n2)+neg,m,<span class="string">'significant'</span>);
+    <span class="keyword">end</span>
+    Approx_div = round(pos+neg,m,<span class="string">'significant'</span>);
+<span class="keyword">end</span>
+Approx_div <span class="comment">% answer is 0.0000</span>
+<span class="comment">% answer has converged at k=17 (18 total terms)</span>
+RE_diii = (exp(x_d)-Approx_div)/exp(x_d) <span class="comment">% relative error = 1</span>
+
+
+<span class="comment">% iii and iv converge most quickly, but the answer is very wrong</span>
+
+<span class="comment">% i and ii have lowest error</span>
+
+<span class="comment">% Compared with positive case, exp(-5.5) is much more difficult to compute</span>
+<span class="comment">%       accurately</span>
+
+
+<span class="comment">% part (e)</span>
+
+<span class="comment">% One way which would probably work better would be to compute exp(5.5)</span>
+<span class="comment">% rather than exp(-5.5), using the series approach as per parts (b) and</span>
+<span class="comment">% (c). Then, once exp(5.5) is calculated, just take exp(-5.5) = 1/exp(5.5).</span>
+<span class="comment">% Division does not introduce a lot of error, so this should improve the</span>
+<span class="comment">% accuracy of the result.</span>
+
+<span class="comment">% Validate proposal - just take inverse of what I already have from parts</span>
+<span class="comment">% (b) and (c)</span>
+
+Approx_e = 1/Approx_b <span class="comment">% we get exp(-5.5) = 0.00408647...</span>
+RE_e = (exp(x_d)-Approx_e)/exp(x_d)
+
+<span class="comment">% This took only 18 terms and has a RE of 7.38e-05, compared with 26 terms</span>
+<span class="comment">% using the method in part (d) which had a RE of 0.061288.</span>
+<span class="comment">% So, we see this is a much better approach!</span>
+</pre><pre class="codeoutput">
+Approx_b =
+
+     2.447100000000000e+02
+
+
+RE =
+
+    -7.383870654188337e-05
+
+
+Approx_c =
+
+     2.447100000000000e+02
+
+
+Approx_di =
+
+   0.003836300000000
+
+
+RE_di =
+
+   0.061288340254771
+
+
+Approx_dii =
+
+   0.003836300000000
+
+
+RE_dii =
+
+   0.061288340254771
+
+
+Approx_diii =
+
+     0
+
+
+RE_diii =
+
+     1
+
+
+Approx_div =
+
+     0
+
+
+RE_diii =
+
+     1
+
+
+Approx_e =
+
+   0.004086469698827
+
+
+RE_e =
+
+     7.383325478967511e-05
+
+</pre><h2 id="2">Problem 4</h2><pre class="codeinput"><span class="comment">% part (c)</span>
+x = 0:0.01:1;
+condA = (x./abs(1-exp(-x)))./x;
+condf = (x.*exp(-x))./(1-exp(-x));
+figure
+subplot(2,1,1)
+hold <span class="string">on</span>
+plot(x,condA,<span class="string">'k'</span>,<span class="string">'LineWidth'</span>,2)
+plot(x,condf,<span class="string">'k:'</span>,<span class="string">'LineWidth'</span>,2')
+plot(x,ones(size(x)),<span class="string">'r--'</span>,<span class="string">'LineWidth'</span>,1.5)
+hold <span class="string">off</span>
+title(<span class="string">'Zoomed out'</span>)
+xlabel(<span class="string">'x'</span>)
+ylabel(<span class="string">'condA(x), condf(x)'</span>)
+legend(<span class="string">'condA'</span>,<span class="string">'condf'</span>,<span class="string">'1.0'</span>)
+axis([0 1 0 100])
+subplot(2,1,2)
+hold <span class="string">on</span>
+plot(x,condA,<span class="string">'k'</span>,<span class="string">'LineWidth'</span>,2)
+plot(x,condf,<span class="string">'k:'</span>,<span class="string">'LineWidth'</span>,2')
+plot(x,ones(size(x)),<span class="string">'r--'</span>,<span class="string">'LineWidth'</span>,1.5)
+hold <span class="string">off</span>
+title(<span class="string">'Zoomed in'</span>)
+xlabel(<span class="string">'x'</span>)
+ylabel(<span class="string">'condA(x), condf(x)'</span>)
+legend(<span class="string">'condA'</span>,<span class="string">'condf'</span>,<span class="string">'1.0'</span>)
+axis([0 1 0 2.5])
+
+<span class="comment">% we see that condA(x) becomes more ill-conditioned for smaller x values.</span>
+<span class="comment">% This is because the expression for condA(x) involves division by x, so</span>
+<span class="comment">% the expression diverges in the limit of x goes to zero. On a higher</span>
+<span class="comment">% level, the algorithm is ill conditioned due to the subtraction operation,</span>
+<span class="comment">% when we subtract something from 1 which is very close to 1 (i.e. exp(0) in</span>
+<span class="comment">% this case)</span>
+
+<span class="comment">% part (d)</span>
+<span class="comment">% smallest x for 1 bit of significance lost:</span>
+<span class="comment">%      condA(x) = 2 when x = 0.69 (i.e., error is 2eps)</span>
+
+<span class="comment">% smallest x for 2 bits significance lost</span>
+<span class="comment">%      condA(x) = 4 when x = 0.28 (i.e., error is 4eps = 2^2 = 2 bits)</span>
+
+<span class="comment">% smallest x for 3 bits significance lost</span>
+<span class="comment">%      condA(x) = 8 when x = 0.13 (i.e., error is 8eps = 2^3 = 3 bits)</span>
+
+<span class="comment">% smallest x for 4 bits significance lost</span>
+<span class="comment">%      condA(x) = 16 when x = 0.06 (i.e., error is 16eps = 2^4 = 4 bits)</span>
+</pre><img vspace="5" hspace="5" src="APC523_HW1_01.png" alt=""> <h2 id="3">Problem 5</h2><pre class="codeinput">clear
+clc
+
+dif = 1;
+e_old = 0;
+e_table = [];
+j = 0;
+TOL = 13;
+<span class="keyword">while</span> dif &gt;0
+    n = 10^j;
+    e = (1+(1/n))^n;
+    dif = round(e,TOL,<span class="string">'significant'</span>)-round(e_old,TOL,<span class="string">'significant'</span>);
+    e_old = e;
+    e_table(j+1) = e;
+    j = j+1;
+<span class="keyword">end</span>
+e <span class="comment">% congerges to 2.7161100</span>
+nstop = n <span class="comment">% nstop is 10^13</span>
+jstop = j-1 <span class="comment">% jstop is 13</span>
+e_table'
+
+<span class="comment">% issue is probably that at *some* point the nonzero digits in (1+1/n) get too spread apart for machine</span>
+<span class="comment">% precision to account for them both when we do the exponential, so taking the</span>
+<span class="comment">% exponential starts giving inaccurate results after this point is reached.</span>
+</pre><pre class="codeoutput">
+e =
+
+   2.716110034086901
+
+
+nstop =
+
+     1.000000000000000e+13
+
+
+jstop =
+
+    13
+
+
+ans =
+
+   2.000000000000000
+   2.593742460100002
+   2.704813829421528
+   2.716923932235594
+   2.718145926824926
+   2.718268237192297
+   2.718280469095753
+   2.718281694132082
+   2.718281798347358
+   2.718282052011560
+   2.718282053234788
+   2.718282053357110
+   2.718523496037238
+   2.716110034086901
+
+</pre><h2 id="4">Problem 6</h2><pre class="codeinput">clear
+clc
+
+x = linspace(1,10,1001);
+x0 = x';
+n = 52;
+
+<span class="keyword">for</span> j = 1:n
+    x = sqrt(x);
+    j = j;
+<span class="keyword">end</span>
+x1 = x';
+
+<span class="keyword">for</span> k = 1:n
+    x = x.^2;
+    k = k;
+<span class="keyword">end</span>
+x2 = x';
+
+figure
+hold <span class="string">on</span>
+plot(x0,x2,<span class="string">'r'</span>,<span class="string">'LineWidth'</span>,2)
+plot(x0,x0,<span class="string">'k--'</span>)
+
+<span class="comment">% Analysis of what happens if we square-root &amp; square different numbers</span>
+<span class="comment">% of times</span>
+vals = [49 50 51 53 54];
+y = zeros(1001,length(vals));
+<span class="keyword">for</span> j = 1:length(vals)
+    n = vals(j);
+    y1 = x0;
+    <span class="keyword">for</span> k2 = 1:n
+        y1 = sqrt(y1);
+        k2 = k2;
+    <span class="keyword">end</span>
+    y(:,j) = y1;
+    y2 = y1;
+
+    <span class="keyword">for</span> k = 1:n
+        y2 = y2.^2;
+        k = k;
+    <span class="keyword">end</span>
+
+    y(:,j) = y2;
+
+<span class="keyword">end</span>
+
+figure
+hold <span class="string">on</span>
+plot(x0,y,<span class="string">'LineWidth'</span>,1.5)
+plot(x0,x2,<span class="string">'r'</span>,<span class="string">'LineWidth'</span>,2)
+plot(x0,x0,<span class="string">'k--'</span>)
+legend(<span class="string">'49'</span>,<span class="string">'50'</span>,<span class="string">'51'</span>,<span class="string">'53'</span>,<span class="string">'54'</span>)
+
+<span class="comment">% what values left intact and why? Give account of what's going on</span>
+
+<span class="comment">% with 52 iterations we get correct results for e^0, e^1, and e^2</span>
+
+<span class="comment">% with 51 iterations, extra recovered values at e^0, e^0.5, e^1, e^1.5, and e^2</span>
+<span class="comment">% with 50 iterations, additional extra recovered values at e^(1/4), e^(3/4), e^(5/4), e^(7/4), e^(9/4)</span>
+
+<span class="comment">% with 53 iterations, only e^0 and  e^2 are recovered</span>
+<span class="comment">% with 54 iterations, only e^0 recovered</span>
+
+<span class="comment">% we see that with increased numbers of iterations, we are converging</span>
+<span class="comment">% towards everything resulting in 1. This is because 1 is the fixed point</span>
+<span class="comment">% of the square root &amp; squaring maps. When we see that, below 54</span>
+<span class="comment">% iterations, we converge also to other powers of e. This can be explained</span>
+<span class="comment">% by looking at the expression for e given in Problem 5, which is:</span>
+<span class="comment">% e = lim n-&gt;\infty (1+1/n)^n</span>
+<span class="comment">% we see that for very large n, 1/n becomes very small, and (1+1/n) will become hard to represent accurately.</span>
+<span class="comment">% then, it is possible that taking 52 square roots of a number will make it</span>
+<span class="comment">% look like (1+1/n) for (some) very large n, and the computer could store</span>
+<span class="comment">% the number as an inverse n-th power of e. Then, when we square it 52 more</span>
+<span class="comment">% times, we will effectively be squaring some inverse n-th power of e 52</span>
+<span class="comment">% times, and the result will be (e^(1/n))^2^2^2....50-some times, which</span>
+<span class="comment">% will lead to a result with is a power of e or a fractional power of e. In</span>
+<span class="comment">% the limit of infinite iterations we will get the fixed point of the map,</span>
+<span class="comment">% exp(0)=1, but with fewer and fewer iterations we will get closer and</span>
+<span class="comment">% closer to the correct answers. But somewhere in between (in the upper</span>
+<span class="comment">% 40-s, lower 50-s range), we will see the "powers of e" behavior as an</span>
+<span class="comment">% artifact of the situation described above.</span>
+</pre><img vspace="5" hspace="5" src="APC523_HW1_02.png" alt=""> <img vspace="5" hspace="5" src="APC523_HW1_03.png" alt=""> <h2 id="5">Problem 7</h2><pre class="codeinput">clear
+clc
+
+syms <span class="string">X</span>
+func = 1;
+
+<span class="comment">% part (a)</span>
+<span class="keyword">for</span> k = 1:20
+    func = (X-k)*func;
+<span class="keyword">end</span>
+C = coeffs(func); <span class="comment">% C contains a vector with the integer coefficients</span>
+
+<span class="comment">% part (b)</span>
+<span class="comment">% y = Wilkinson2(x); % The Wilkinson function evaluates the polynomial for a</span>
+<span class="comment">% given x argument</span>
+x0 = 21;
+options = optimset(<span class="string">'TolX'</span>,10^(-12));
+x_b = fsolve(@(x) Wilkinson2(x, 0,0), x0,options) <span class="comment">% evaluates to 21.00000</span>
+
+<span class="comment">% part (c)</span>
+delta = [10^(-8) 10^(-6) 10^(-4) 10^(-2)];
+<span class="keyword">for</span> j = 1:length(delta)
+    x_c = fsolve(@(x) Wilkinson2(x, delta(j),0), x0,options)
+<span class="keyword">end</span>
+<span class="comment">% In order from 10^-8 to 10^-2, I get: 20.9999, 13.7238, 7.70882, and</span>
+<span class="comment">% 5.4470; we see the largest root starts shrinking!</span>
+
+<span class="comment">% part (d)</span>
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)), x0,options) <span class="comment">% this gives me 21.00000068</span>
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)),16,options) <span class="comment">% this gives me 16</span>
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)),17,options) <span class="comment">% this gives me 17.00000023</span>
+
+<span class="comment">% part (e) part (ii)</span>
+r = [14 16 17 20];
+<span class="keyword">for</span> j = 1:length(r)
+    dpdr = Wilkinson_deriv(r(j));
+    <span class="keyword">for</span> l = 1:x0-1
+        cond = C(l)*r(j)^(l-1)/dpdr;
+    <span class="keyword">end</span>
+    cond_e = double(cond)
+<span class="keyword">end</span>
+<span class="comment">% answers are -2.8e11, -5.1e11, 4.0000e11, and -9.1e9, in order</span>
+<span class="comment">% These large values indicate that the problem is indeed very poorly conditioned!</span>
+</pre><pre class="codeoutput">
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_b =
+
+  21.000000684404917
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_c =
+
+  20.999998425083085
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_c =
+
+  13.723795428123704
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_c =
+
+   7.708815299281727
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_c =
+
+   5.447006272762118
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_d =
+
+  21.000000684404917
+
+
+Equation solved at initial point.
+
+fsolve completed because the vector of function values at the initial point
+is near zero as measured by the default value of the function tolerance, and
+the problem appears regular as measured by the gradient.
+
+
+
+
+x_d =
+
+    16
+
+
+No solution found.
+
+fsolve stopped because the relative size of the current step is less than the
+selected value of the step size tolerance squared, but the vector of function values
+is not near zero as measured by the default value of the function tolerance.
+
+
+
+
+x_d =
+
+  17.000000235541705
+
+
+cond_e =
+
+    -2.812153426564386e+11
+
+
+cond_e =
+
+    -5.063540391073684e+11
+
+
+cond_e =
+
+     3.999986896413966e+11
+
+
+cond_e =
+
+    -9.051200152094036e+09
+
+</pre><h2 id="6">Problem 8</h2><pre class="codeinput">clear
+clc
+
+N = 32; <span class="comment">% seed value</span>
+yn=0;
+<span class="keyword">for</span> n = 1:12
+    yn=(exp(1)-yn)/(N); <span class="comment">% reversed recurrence reln</span>
+    N = N-1;
+<span class="keyword">end</span>
+y20=yn
+<span class="comment">% this gives yn = 0.1238038</span>
+<span class="comment">% Wolfram gives yn = 0.1238 as well</span>
+</pre><pre class="codeoutput">
+y20 =
+
+   0.123803830762570
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+
+
+%% Problem 2
+
+clear
+clc
+
+x = 5.5; k = 30; m = 5;
+
+% Part (a)
+Nums_a = zeros(31,1); Nums_a(1) = 1;
+Denoms_a = zeros(31,1); Denoms_a(1) = 1;
+for n = 1:k
+    Nums_a(n+1) = round(Nums_a(n)*x,m,'significant');
+    Denoms_a(n+1) = round(Denoms_a(n)*n,m,'significant');
+end
+
+% part (b)
+Approx_b = 0;
+for n = 1:k+1
+    Approx_b = round(Approx_b + round(Nums_a(n)/Denoms_a(n),m,'significant'),m,'significant');
+end
+Approx_b % answer is 244.71
+% answer has converged at k=17 (18 total terms)
+Exact = exp(x); % answer is 244.6919322...
+RE = (exp(x)-Approx_b)/exp(x) % relative error = -7.384e-5
+
+% part (c)
+Approx_c = 0;
+for n = 1:k+1
+    Approx_c = round(round(Nums_a(n)/Denoms_a(n),m,'significant')+Approx_c,m,'significant');
+end
+Approx_c % No this didn't change any answers
+
+% part (d)
+x_d = -5.5;
+for n = 1:k+1
+    Nums_d(n) = (-1)^(n-1)*Nums_a(n);
+    Denoms_d(n) = Denoms_a(n);
+end
+Terms = round(Nums_d./Denoms_d,m,'significant');
+
+% (i) Always add left to right
+Approx_di = 0;
+for n = 1:k+1
+    Approx_di = round(Approx_di + Terms(n),m,'significant');
+end
+Approx_di % answer is 0.0038363
+% answer has converged at k=25 (26 total terms)
+Exact_d = exp(x_d); % answer is 0.0040867714...
+RE_di = (exp(x_d)-Approx_di)/exp(x_d) % relative error = 0.061288...
+
+
+% (ii) Within each partial sum, add right to left
+Approx_dii = 0;
+for n = 1:k+1
+    Approx_dii = round(Terms(n)+Approx_dii,m,'significant');
+end
+Approx_dii % answer is 0.0038363
+% answer has converged at k=25 (26 total terms)
+RE_dii = (exp(x_d)-Approx_dii)/exp(x_d) % relative error = 0.061288...
+
+
+% (iii) add all the positive terms contributing to partial sum left to right, then add all...
+%       the negative terms left to right, and then combine those results.
+Terms_pos = Terms; Terms_pos(Terms_pos < 0) = 0;
+Terms_neg = Terms; Terms_neg(Terms_neg > 0) = 0;
+
+Approx_diii = 0; 
+for n = 1:k+1
+    pos = 0; neg = 0;
+    for n2 = 1:n
+        pos = round(pos + Terms_pos(n2),m,'significant');
+        neg = round(neg + Terms_neg(n2),m,'significant');
+    end
+    Approx_diii = round(pos+neg,m,'significant');
+end
+Approx_diii % answer is 0.0000
+% answer has converged at k=17 (18 total terms)
+RE_diii = (exp(x_d)-Approx_diii)/exp(x_d) % relative error = 1
+
+
+% (iv) add all the positive terms contributing to partial sum right to left, then add all...
+%       the negative terms right to left, and then combine those results.
+Approx_div = 0; 
+for n = 1:k+1
+    pos = 0; neg = 0;
+    for n2 = 1:n
+        pos = round(Terms_pos(n2)+pos,m,'significant');
+        neg = round(Terms_neg(n2)+neg,m,'significant');
+    end
+    Approx_div = round(pos+neg,m,'significant');
+end
+Approx_div % answer is 0.0000
+% answer has converged at k=17 (18 total terms)
+RE_diii = (exp(x_d)-Approx_div)/exp(x_d) % relative error = 1
+
+
+% iii and iv converge most quickly, but the answer is very wrong
+
+% i and ii have lowest error
+
+% Compared with positive case, exp(-5.5) is much more difficult to compute
+%       accurately
+
+
+% part (e) 
+
+% One way which would probably work better would be to compute exp(5.5)
+% rather than exp(-5.5), using the series approach as per parts (b) and
+% (c). Then, once exp(5.5) is calculated, just take exp(-5.5) = 1/exp(5.5).
+% Division does not introduce a lot of error, so this should improve the
+% accuracy of the result. 
+
+% Validate proposal - just take inverse of what I already have from parts
+% (b) and (c)
+
+Approx_e = 1/Approx_b % we get exp(-5.5) = 0.00408647... 
+RE_e = (exp(x_d)-Approx_e)/exp(x_d)
+
+% This took only 18 terms and has a RE of 7.38e-05, compared with 26 terms
+% using the method in part (d) which had a RE of 0.061288. 
+% So, we see this is a much better approach!
+
+
+%% Problem 4
+
+% part (c)
+x = 0:0.01:1;
+condA = (x./abs(1-exp(-x)))./x;
+condf = (x.*exp(-x))./(1-exp(-x));
+figure
+subplot(2,1,1)
+hold on
+plot(x,condA,'k','LineWidth',2)
+plot(x,condf,'k:','LineWidth',2')
+plot(x,ones(size(x)),'rREPLACE_WITH_DASH_DASH','LineWidth',1.5)
+hold off
+title('Zoomed out')
+xlabel('x')
+ylabel('condA(x), condf(x)')
+legend('condA','condf','1.0')
+axis([0 1 0 100])
+subplot(2,1,2)
+hold on
+plot(x,condA,'k','LineWidth',2)
+plot(x,condf,'k:','LineWidth',2')
+plot(x,ones(size(x)),'rREPLACE_WITH_DASH_DASH','LineWidth',1.5)
+hold off
+title('Zoomed in')
+xlabel('x')
+ylabel('condA(x), condf(x)')
+legend('condA','condf','1.0')
+axis([0 1 0 2.5])
+
+% we see that condA(x) becomes more ill-conditioned for smaller x values.
+% This is because the expression for condA(x) involves division by x, so
+% the expression diverges in the limit of x goes to zero. On a higher
+% level, the algorithm is ill conditioned due to the subtraction operation,
+% when we subtract something from 1 which is very close to 1 (i.e. exp(0) in
+% this case)
+
+% part (d)
+% smallest x for 1 bit of significance lost:
+%      condA(x) = 2 when x = 0.69 (i.e., error is 2eps)
+
+% smallest x for 2 bits significance lost
+%      condA(x) = 4 when x = 0.28 (i.e., error is 4eps = 2^2 = 2 bits)
+
+% smallest x for 3 bits significance lost
+%      condA(x) = 8 when x = 0.13 (i.e., error is 8eps = 2^3 = 3 bits)
+
+% smallest x for 4 bits significance lost
+%      condA(x) = 16 when x = 0.06 (i.e., error is 16eps = 2^4 = 4 bits)
+
+
+%% Problem 5
+
+clear
+clc
+
+dif = 1;
+e_old = 0;
+e_table = [];
+j = 0;
+TOL = 13;
+while dif >0
+    n = 10^j;
+    e = (1+(1/n))^n;
+    dif = round(e,TOL,'significant')-round(e_old,TOL,'significant');
+    e_old = e;
+    e_table(j+1) = e;
+    j = j+1;
+end
+e % congerges to 2.7161100
+nstop = n % nstop is 10^13
+jstop = j-1 % jstop is 13
+e_table'
+
+% issue is probably that at *some* point the nonzero digits in (1+1/n) get too spread apart for machine
+% precision to account for them both when we do the exponential, so taking the
+% exponential starts giving inaccurate results after this point is reached.
+
+%% Problem 6
+
+clear
+clc
+
+x = linspace(1,10,1001);
+x0 = x';
+n = 52;
+
+for j = 1:n
+    x = sqrt(x);
+    j = j;
+end
+x1 = x';
+
+for k = 1:n
+    x = x.^2;
+    k = k;
+end
+x2 = x';
+
+figure
+hold on
+plot(x0,x2,'r','LineWidth',2)
+plot(x0,x0,'kREPLACE_WITH_DASH_DASH')
+
+% Analysis of what happens if we square-root & square different numbers
+% of times
+vals = [49 50 51 53 54];
+y = zeros(1001,length(vals));
+for j = 1:length(vals)
+    n = vals(j);
+    y1 = x0;
+    for k2 = 1:n
+        y1 = sqrt(y1);
+        k2 = k2;
+    end
+    y(:,j) = y1;
+    y2 = y1;
+
+    for k = 1:n
+        y2 = y2.^2;
+        k = k;
+    end
+    
+    y(:,j) = y2;
+
+end
+
+figure
+hold on
+plot(x0,y,'LineWidth',1.5)
+plot(x0,x2,'r','LineWidth',2)
+plot(x0,x0,'kREPLACE_WITH_DASH_DASH')
+legend('49','50','51','53','54')
+
+% what values left intact and why? Give account of what's going on
+
+% with 52 iterations we get correct results for e^0, e^1, and e^2
+
+% with 51 iterations, extra recovered values at e^0, e^0.5, e^1, e^1.5, and e^2 
+% with 50 iterations, additional extra recovered values at e^(1/4), e^(3/4), e^(5/4), e^(7/4), e^(9/4)
+
+% with 53 iterations, only e^0 and  e^2 are recovered 
+% with 54 iterations, only e^0 recovered 
+
+% we see that with increased numbers of iterations, we are converging
+% towards everything resulting in 1. This is because 1 is the fixed point
+% of the square root & squaring maps. When we see that, below 54
+% iterations, we converge also to other powers of e. This can be explained
+% by looking at the expression for e given in Problem 5, which is:
+% e = lim n->\infty (1+1/n)^n
+% we see that for very large n, 1/n becomes very small, and (1+1/n) will become hard to represent accurately.
+% then, it is possible that taking 52 square roots of a number will make it
+% look like (1+1/n) for (some) very large n, and the computer could store
+% the number as an inverse n-th power of e. Then, when we square it 52 more
+% times, we will effectively be squaring some inverse n-th power of e 52
+% times, and the result will be (e^(1/n))^2^2^2....50-some times, which
+% will lead to a result with is a power of e or a fractional power of e. In
+% the limit of infinite iterations we will get the fixed point of the map,
+% exp(0)=1, but with fewer and fewer iterations we will get closer and
+% closer to the correct answers. But somewhere in between (in the upper
+% 40-s, lower 50-s range), we will see the "powers of e" behavior as an
+% artifact of the situation described above.
+
+%% Problem 7
+
+clear 
+clc
+
+syms X
+func = 1;
+
+% part (a)
+for k = 1:20
+    func = (X-k)*func;
+end
+C = coeffs(func); % C contains a vector with the integer coefficients
+
+% part (b)
+% y = Wilkinson2(x); % The Wilkinson function evaluates the polynomial for a
+% given x argument
+x0 = 21;
+options = optimset('TolX',10^(-12));
+x_b = fsolve(@(x) Wilkinson2(x, 0,0), x0,options) % evaluates to 21.00000
+
+% part (c)
+delta = [10^(-8) 10^(-6) 10^(-4) 10^(-2)];
+for j = 1:length(delta)
+    x_c = fsolve(@(x) Wilkinson2(x, delta(j),0), x0,options)
+end
+% In order from 10^-8 to 10^-2, I get: 20.9999, 13.7238, 7.70882, and
+% 5.4470; we see the largest root starts shrinking!
+
+% part (d)
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)), x0,options) % this gives me 21.00000068
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)),16,options) % this gives me 16
+x_d = fsolve(@(x) Wilkinson2(x, 0, -2*10^(-23)),17,options) % this gives me 17.00000023
+
+% part (e) part (ii) 
+r = [14 16 17 20];
+for j = 1:length(r)
+    dpdr = Wilkinson_deriv(r(j));
+    for l = 1:x0-1
+        cond = C(l)*r(j)^(l-1)/dpdr;
+    end
+    cond_e = double(cond)
+end
+% answers are -2.8e11, -5.1e11, 4.0000e11, and -9.1e9, in order
+% These large values indicate that the problem is indeed very poorly conditioned!
+
+
+%% Problem 8
+
+clear
+clc
+
+N = 32; % seed value
+yn=0;
+for n = 1:12
+    yn=(exp(1)-yn)/(N); % reversed recurrence reln
+    N = N-1;
+end
+y20=yn
+% this gives yn = 0.1238038
+% Wolfram gives yn = 0.1238 as well
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
